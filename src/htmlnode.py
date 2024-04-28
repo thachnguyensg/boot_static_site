@@ -1,5 +1,5 @@
 class HTMLNode:
-    def __init__(self, tag=None, value=None, children=None, props=None):
+    def __init__(self, tag, value=None, children=None, props=None):
         self.tag = tag
         self.value = value
         self.children = children
@@ -22,11 +22,8 @@ class HTMLNode:
         props_str = ""
         if not self.props:
             return props_str
-        if "href" in self.props:
-            props_str += f' href="{self.props["href"]}"'
-        if "target" in self.props:
-            props_str += f' target="{self.props["target"]}"'
-
+        for prop in self.props:
+            props_str += f' {prop}="{self.props[prop]}"'
         return props_str
 
     def __repr__(self) -> str:
