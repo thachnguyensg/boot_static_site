@@ -1,5 +1,11 @@
-from textnode import TextNode, text_node_to_html_node
 from htmlnode import HTMLNode
+from textnode import (
+    TextNode,
+    text_node_to_html_node,
+    text_type_text,
+    text_type_bold,
+)
+from inline_markdown import split_nodes_delimiter
 
 
 def main():
@@ -18,6 +24,28 @@ def main():
 
     tnode = TextNode("This is a test node", "link", "https://www.boot.dev")
     print(text_node_to_html_node(tnode))
+
+    test_split_nodes_delimiter()
+
+
+def test_split_nodes_delimiter():
+    print("Test split nodes delimiter")
+    # node = TextNode("This is text with a `code block` word", text_type_text)
+    # new_nodes = split_nodes_delimiter([node], "`", text_type_code)
+    # print(node)
+    # print(new_nodes)
+    #
+    # node = TextNode("This is text with a `code block`", text_type_text)
+    # new_nodes = split_nodes_delimiter([node], "`", text_type_code)
+    # print(node)
+    # print(new_nodes)
+    #
+    node = TextNode(
+        "This is text with a **bolded word** and **another**", text_type_text
+    )
+    new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
+    print(node)
+    print(new_nodes)
 
 
 main()
