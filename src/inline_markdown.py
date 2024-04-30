@@ -1,3 +1,5 @@
+import re
+
 from textnode import (
     TextNode,
     text_type_text,
@@ -53,3 +55,15 @@ def __split_node_darkside(inputs, delimiter, text_type, outputs):
     if not inputs[1] == "":
         outputs.append(TextNode(inputs[1], text_type))
     return __split_node_darkside(inputs[2:], delimiter, text_type, outputs)
+
+
+def extract_markdown_images(text):
+    pattern = r"!\[(.*?)\]\((.*?)\)"
+    matches = re.findall(pattern, text)
+    return matches
+
+
+def extract_markdown_links(text):
+    pattern = r"\[(.*?)\]\((.*?)\)"
+    matches = re.findall(pattern, text)
+    return matches
