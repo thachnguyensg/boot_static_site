@@ -91,6 +91,10 @@ def __split_link_image(old_nodes, text_type):
         else:
             extracted_items = extract_markdown_links(text)
 
+        if len(extracted_items) == 0:
+            new_nodes.append(oldnode)
+            continue
+
         for item in extracted_items:
             delimiter = ""
             if text_type == text_type_image:
