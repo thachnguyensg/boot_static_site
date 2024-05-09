@@ -2,7 +2,7 @@ import os
 import shutil
 
 from copystatic import copy_assets
-from generatepage import generate_page
+from generatepage import generate_page, generate_pages_recursive
 
 dir_path_static = "./static"
 dir_path_public = "./public"
@@ -20,7 +20,8 @@ def main():
     index_path = os.path.join(content_path, "index.md")
     dest_path = os.path.join(dir_path_public, "index.html")
 
-    generate_page(index_path, template_path, dest_path)
+    # generate_page(index_path, template_path, dest_path)
+    generate_pages_recursive(content_path, template_path, dir_path_public)
 
 
 main()
